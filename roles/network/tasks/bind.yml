@@ -1,0 +1,23 @@
+---
+- name: install bind
+  apt: pkg=bind9
+       state=present
+
+- name: preparing zones directories
+  file: path={{item}} state=directory owner=root mode=0755
+  with_items:
+    - /etc/bind/zones/
+
+- name: configure bind
+  template: src={{ item.src}}
+            dest={{ item.dest }}
+            owner=root group=root mode=0644
+  with_items:
+    - { src: 'named.conf.local', dest: '/etc/bind/named.conf.local' }
+    - { src: 'reverse.zone', dest: '/etc/bind/zones/{{ ip_prefix }}.zone' }
+    - { src: 'domainname.zone', dest: '/etc/bind/zones/{{ domainname }}.zone' }
+    - { src: 'ddns_domainname.zone', dest: '/etc/bind/zones/{{ ddns_domainname }}.zone' }
+  notify: restart bind
+
+- name: start bind
+  service: name=bind9 state=started enabled=true

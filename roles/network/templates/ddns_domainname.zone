@@ -1,0 +1,12 @@
+$ORIGIN .
+$TTL 3600   ; 1 hour
+{{ ddns_domainname }}    IN SOA  {{ domainname }}. zhang.erning.com. (
+                2010078895 ; serial
+                28800      ; refresh (8 hours)
+                14400      ; retry (4 hours)
+                604800     ; expire (1 week)
+                86400      ; minimum (1 day)
+                )
+            NS  {{ domainname }}.
+$ORIGIN {{ ddns_domainname }}.
+alcohol         A   {{ ip_address }}

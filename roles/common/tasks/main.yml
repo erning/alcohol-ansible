@@ -1,0 +1,3 @@
+---
+- include: aptitute.yml
+- include: basic-system.yml

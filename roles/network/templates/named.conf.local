@@ -1,0 +1,68 @@
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+
+key "rndc-key" {
+    algorithm hmac-md5;
+    secret "{{ lookup('file', 'secrets/rndc-key') }}";
+};
+
+controls {
+    inet 127.0.0.1 allow { localhost; } keys { "rndc-key"; };
+};
+
+#
+# Home Networks
+#
+
+zone "{{ ip_prefix_r }}.in-addr.arpa" IN {
+    type master;
+    file "/etc/bind/zones/{{ ip_prefix_r }}.zone";
+    allow-update { key "rndc-key"; };
+};
+
+zone "{{ ddns_domainname }}" IN {
+    type master;
+    file "/etc/bind/zones/{{ ddns_domainname }}.zone";
+    allow-update { key "rndc-key"; };
+};
+
+zone "{{ domainname }}" IN {
+    type master;
+    file "/etc/bind/zones/{{ domainname }}.zone";
+    allow-update { none; };
+    notify no;
+};
+
+#
+# GFW
+#
+
+#zone "gmail.com" IN {
+#    type forward;
+#    forward only;
+#    forwarders {
+#        74.207.241.5;
+#        74.207.242.5;
+#    };
+#};
+
+#
+# Office
+#
+zone "test.anjukestatic.com" IN {
+    type forward;
+    forward only;
+    forwarders {
+        192.168.1.100;
+    };
+};
+zone "dev.anjuke.com" IN {
+    type forward;
+    forward only;
+    forwarders {
+        192.168.1.100;
+    };
+};

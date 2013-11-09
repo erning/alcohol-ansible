@@ -1,0 +1,8 @@
+:DEFAULT: options:upriv,usedots cnidscheme:tdb ea:sys
+
+{% if inventory_hostname == 'vagrant' %}
+#~/ "$u" allow:@users
+{% else %}
+/mnt/storage "storage" allow:nobody,@users
+/mnt/TimeMachine "TimeMachine" options:usedots,upriv,tm allow:@users
+{% endif %}

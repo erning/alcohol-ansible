@@ -1,0 +1,2 @@
+root = Administrator admin
+nobody = guest pcguest smbguest

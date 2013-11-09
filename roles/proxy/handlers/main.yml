@@ -1,0 +1,6 @@
+---
+- name: restart squid
+  service: name=squid3 state=restarted
+
+- name: restart privoxy
+  service: name=privoxy state=restarted

@@ -1,0 +1,13 @@
+---
+
+ubuntu_mirror: 'http://cn.archive.ubuntu.com/ubuntu/'
+
+domainname: alcohol.swanpan.com
+ddns_domainname: home.swanpan.com
+privoxy_upstream: '[2600:3c01::f03c:91ff:fe69:7f15]:8118'
+
+ip_address: 172.31.19.254
+ip_prefix: 172.31.19
+ip_prefix_r: 19.31.172
+
+ipv6_address: '2001:470:1f04:ba5::2'

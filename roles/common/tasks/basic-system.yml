@@ -1,0 +1,18 @@
+---
+- name: install basic system
+  apt: pkg=$item
+       state=present
+  with_items:
+    - bridge-utils
+    - mdadm
+    - xfsprogs
+    - btrfs-tools
+
+    - build-essential
+
+    - traceroute
+    - sysstat
+    - iotop
+    - htop
+    - ifstat
+    - lm-sensors

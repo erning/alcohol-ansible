@@ -1,0 +1,37 @@
+---
+- name: install netatalk
+  apt: pkg=netatalk
+       state=present
+
+- name: configure netatalk
+  template: src={{ item.src}}
+            dest={{ item.dest }}
+            owner=root group=root mode=0644
+  with_items:
+    - { src: 'afpd.conf', dest: '/etc/netatalk/afpd.conf' }
+    - { src: 'AppleVolumes.default', dest: '/etc/netatalk/AppleVolumes.default' }
+  notify: restart netatalk
+
+- name: start netatalk
+  service: name=netatalk state=started enabled=true
+
+- name: install samba
+  apt: pkg=samba
+       state=present
+
+- name: configure samba
+  template: src={{ item.src}}
+            dest={{ item.dest }}
+            owner=root group=root mode=0644
+  with_items:
+    - { src: 'smb.conf', dest: '/etc/samba/smb.conf' }
+    - { src: 'smbusers', dest: '/etc/samba/smbusers' }
+  notify:
+    - restart smbd
+    - restart nmbd
+
+- name: start smbd
+  service: name=smbd state=started enabled=true
+
+- name: start nmbd
+  service: name=nmbd state=started enabled=true

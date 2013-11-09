@@ -1,0 +1,9 @@
+---
+- name: restart netatalk
+  service: name=netatalk state=restarted
+
+- name: restart smbd
+  service: name=smbd state=restarted
+
+- name: restart nmbd
+  service: name=nmbd state=restarted

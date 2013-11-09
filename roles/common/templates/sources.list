@@ -1,0 +1,10 @@
+deb {{ ubuntu_mirror }} precise main multiverse restricted universe
+deb {{ ubuntu_mirror }} precise-updates main multiverse restricted universe
+deb {{ ubuntu_mirror }} precise-proposed main multiverse restricted universe
+deb {{ ubuntu_mirror }} precise-backports main multiverse restricted universe
+deb {{ ubuntu_mirror }} precise-security  main multiverse restricted universe
+
+{% if inventory_hostname != 'vagrant' %}
+deb http://security.ubuntu.com/ubuntu precise-security main multiverse restricted universe
+deb-src http://security.ubuntu.com/ubuntu precise-security main multiverse restricted universe
+{% endif %}

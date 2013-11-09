@@ -1,0 +1,21 @@
+---
+- name: install nginx and php
+  apt: pkg=nginx
+       state=present
+
+- name: preparing web directories
+  file: path=$item
+        state=directory
+        owner=root group=root mode=0755
+  with_items:
+    - /home/www/etc/nginx/sites/
+    - /home/www/sites/default/htdocs/
+
+- name: configure nginx
+  template: src=nginx.conf
+            dest=/etc/nginx/nginx.conf
+            owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: start nginx
+  service: name=nginx state=started enabled=true

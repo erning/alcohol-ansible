@@ -1,0 +1,13 @@
+$ORIGIN .
+$TTL 3600   ; 1 hour
+{{ ip_prefix_r }}.in-addr.arpa  IN SOA  {{ domainname }}. zhang.erning.com. (
+                2010023162 ; serial
+                28800      ; refresh (8 hours)
+                14400      ; retry (4 hours)
+                604800     ; expire (1 week)
+                86400      ; minimum (1 day)
+                )
+            NS  alcohol.swanpan.com.
+$ORIGIN {{ ip_prefix_r }}.in-addr.arpa.
+251         PTR persimmon.{{ ddns_domainname }}.
+254         PTR alcohol.{{ ddns_domainname }}.

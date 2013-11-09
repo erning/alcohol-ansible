@@ -1,0 +1,6 @@
+---
+- name: restart dhcpd
+  service: name=isc-dhcp-server state=restarted
+
+- name: restart bind
+  service: name=bind9 state=restarted

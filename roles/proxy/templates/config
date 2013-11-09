@@ -1,0 +1,101 @@
+# privoxy configuration
+
+user-manual /usr/share/doc/privoxy/user-manual
+confdir /etc/privoxy
+logdir /var/log/privoxy
+logfile privoxy.log
+
+listen-address  0.0.0.0:8118
+toggle  0
+enable-remote-toggle  0
+enable-remote-http-toggle  0
+enable-edit-actions 0
+enforce-blocks 0
+buffer-limit 4096
+forwarded-connect-retries  0
+accept-intercepted-requests 0
+allow-cgi-request-crunching 0
+split-large-forms 0
+keep-alive-timeout 0
+socket-timeout 60
+handle-as-empty-doc-returns-ok 1
+
+debug 512
+
+#
+#
+#
+
+forward / .
+#forward-socks5 .twitter.com 127.0.0.1:9050 .
+
+forward .twitter.com {{ privoxy_upstream }}
+forward .twimg.com {{ privoxy_upstream }}
+forward .facebook.com {{ privoxy_upstream }}
+forward .facebook.net {{ privoxy_upstream }}
+forward .fbcdn.net {{ privoxy_upstream }}
+forward .foursquare.com {{ privoxy_upstream }}
+forward .gmodules.com {{ privoxy_upstream }}
+forward .youtube.com {{ privoxy_upstream }}
+forward .youtu.be {{ privoxy_upstream }}
+forward .ytimg.com {{ privoxy_upstream }}
+forward .googlevideo.com {{ privoxy_upstream }}
+forward .blogger.com {{ privoxy_upstream }}
+forward .blogspot.com {{ privoxy_upstream }}
+forward .dropbox.com {{ privoxy_upstream }}
+forward .golang.org {{ privoxy_upstream }}
+forward .wordpress.com {{ privoxy_upstream }}
+forward .tw.yahoo.com {{ privoxy_upstream }}
+forward .bbc.co.uk/(chinese|zhongwen)/ {{ privoxy_upstream }}
+forward .bullogger.com {{ privoxy_upstream }}
+forward .bit.ly {{ privoxy_upstream }}
+forward .ff.im {{ privoxy_upstream }}
+forward .yfrog.com {{ privoxy_upstream }}
+forward .twitpic.com {{ privoxy_upstream }}
+forward .twitgoo.com {{ privoxy_upstream }}
+forward .mail-archive.com {{ privoxy_upstream }}
+forward .pbworks.com {{ privoxy_upstream }}
+forward .archive.org {{ privoxy_upstream }}
+forward .friendfeed.com {{ privoxy_upstream }}
+forward .html5rocks.com {{ privoxy_upstream }}
+forward .jitouch.com {{ privoxy_upstream }}
+forward .ping.fm {{ privoxy_upstream }}
+forward .feedburner.com {{ privoxy_upstream }}
+forward .plurk.com {{ privoxy_upstream }}
+forward .boxun.com {{ privoxy_upstream }}
+forward .ebookee.com {{ privoxy_upstream }}
+forward .ebookee.com.cn {{ privoxy_upstream }}
+forward .thejit.org {{ privoxy_upstream }}
+forward .wowebook.com {{ privoxy_upstream }}
+forward feeds.wired.com {{ privoxy_upstream }}
+forward .img.ly {{ privoxy_upstream }}
+forward .google.com.hk {{ privoxy_upstream }}
+
+forward .ow.ly {{ privoxy_upstream }}
+forward .sns.ly {{ privoxy_upstream }}
+forward .tinyurl.com {{ privoxy_upstream }}
+forward .tweetmeme.com {{ privoxy_upstream }}
+forward .t.co {{ privoxy_upstream }}
+forward .j.mp {{ privoxy_upstream }}
+
+forward .tornadoweb.org {{ privoxy_upstream }}
+forward .wdfiles.com {{ privoxy_upstream }}
+
+forward developer.android.com {{ privoxy_upstream }}
+forward .google.com {{ privoxy_upstream }}
+forward .googleusercontent.com {{ privoxy_upstream }}
+forward .appspot.com {{ privoxy_upstream }}
+
+forward .github.com {{ privoxy_upstream }}
+forward .amazonaws.com {{ privoxy_upstream }}
+forward .wikipedia.org {{ privoxy_upstream }}
+forward .godaddy.com {{ privoxy_upstream }}
+forward .pocoo.org {{ privoxy_upstream }}
+
+forward .edgekey.net {{ privoxy_upstream }}
+forward .apple.com {{ privoxy_upstream }}
+
+forward .uniqush.org {{ privoxy_upstream }}
+
+forward .pypi.python.org {{ privoxy_upstream }}
+forward .sf.net {{ privoxy_upstream }}

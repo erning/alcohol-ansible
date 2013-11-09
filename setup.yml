@@ -1,0 +1,12 @@
+---
+- hosts: all
+  user: root
+
+  roles:
+    - common
+    - network
+    - web
+    - proxy
+    - vpn
+    - nas
+

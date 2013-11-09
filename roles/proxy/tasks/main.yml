@@ -1,0 +1,26 @@
+---
+- name: install squid
+  apt: pkg=squid3
+       state=present
+
+- name: configure squid
+  template: src=squid.conf
+            dest=/etc/squid3/squid.conf
+            owner=root group=root mode=0644
+  notify: restart squid
+
+- name: start squid
+  service: name=squid3 state=started enabled=true
+
+- name: install privoxy
+  apt: pkg=privoxy
+       state=present
+
+- name: configure squid
+  template: src=config
+            dest=/etc/privoxy/config
+            owner=root group=root mode=0644
+  notify: restart privoxy
+
+- name: start privoxy
+  service: name=privoxy state=started enabled=true

@@ -1,0 +1,5 @@
+---
+- include: nginx.yml
+- include: php.yml
+- include: mysql.yml
+- include: default-site.yml
